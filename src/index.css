@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --clr-lt: #f3f2f8;
+  --clr-dk: #2d2a27;
+  --clr-main: #f82701;
+}
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-lt);
+  color: var(--clr-dk);
+}
