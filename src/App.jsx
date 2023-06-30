@@ -16,13 +16,13 @@ function Cell ({ children, index, updateBoard }) {
 
 function App () {
   const [board, setBoard] = useState(() => {
-    let localBoard = localStorage.getItem('board')
-    if(localBoard) return JSON.parse(localBoard)
+    const localBoard = localStorage.getItem('board')
+    if (localBoard) return JSON.parse(localBoard)
     return Array(9).fill(null)
   })
   const [turn, setTurn] = useState(() => {
-    let localTurn = localStorage.getItem('turn')
-    if(localTurn) return JSON.parse(localTurn)
+    const localTurn = localStorage.getItem('turn')
+    if (localTurn) return JSON.parse(localTurn)
     return TURNS.X
   })
   const [matchResult, setMatchResult] = useState(null)
@@ -46,14 +46,13 @@ function App () {
 
     // check for current result
     const currentResult = checkForMatchResult(newBoard, turn)
-    if (currentResult){
+    if (currentResult) {
     // Match Ended
-    setMatchResult(currentResult)
-    // delete localstorage data
-    localStorage.removeItem('board')
-    localStorage.removeItem('turn')
-    } 
-
+      setMatchResult(currentResult)
+      // delete localstorage data
+      localStorage.removeItem('board')
+      localStorage.removeItem('turn')
+    }
   }
 
   function checkForMatchResult (board, turn) {
@@ -74,7 +73,7 @@ function App () {
     setMatchResult(null)
   }
 
-  function saveGame(board, turn){
+  function saveGame (board, turn) {
     localStorage.setItem('board', JSON.stringify(board))
     localStorage.setItem('turn', JSON.stringify(turn))
   }
@@ -101,7 +100,7 @@ function App () {
       {
         matchResult && (
           <section className='match-result'>
-          {matchResult[0] == 'tie'
+          {matchResult[0] === 'tie'
             ? <h3 className='match-result__heading'>TIE</h3>
             : <>
             <h3 className='match-result__heading'>WINNER</h3>
