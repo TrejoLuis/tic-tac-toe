@@ -7,9 +7,9 @@
 }
 
 :root{
-  --clr-lt: #f3f2f8;
-  --clr-dk: #2d2a27;
-  --clr-main: #f82701;
+  --clr-lt: #fbf0c3;
+  --clr-dk: #24394c;
+  --clr-main: #c2534b;
 }
 body{
   height: 100vh;
@@ -17,6 +17,48 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--clr-dk);
+  color: var(--clr-lt);
+}
+
+#root {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.game-board{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.cell{
+  border: 2px solid var(--clr-main);
+  min-width: 4rem;
+  min-height: 4rem;
+  font-size: 2rem;
+}
+
+.turns-container{
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.turn-box{
+  border: 2px solid var(--clr-main);
+  font-size: 3rem;
+  width: 5rem;
+  height: 5rem;
+}
+.turn-box.selected{
+  background-color: var(--clr-lt);
+  color: var(--clr-dk);
+}
+
+.match-result{
   background-color: var(--clr-lt);
   color: var(--clr-dk);
 }
