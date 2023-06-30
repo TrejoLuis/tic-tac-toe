@@ -75,6 +75,7 @@ function App () {
   return (
     <>
       <h1>Tic Tac Toe</h1>
+      <button onClick={restartGame}>Restart Game</button>
       <section className='game-board'>
         {board.map((content, index) =>
           <Cell key={index} index={index} updateBoard={updateBoard}>
