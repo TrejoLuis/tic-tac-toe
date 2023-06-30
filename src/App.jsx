@@ -17,8 +17,11 @@ function Cell ({ children, index, updateBoard }) {
 function App () {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [turn, setTurn] = useState(TURNS.X)
+  const [matchResult, setMatchResult] = useState(null)
 
   function updateBoard (index) {
+    // Ignore painted cell
+    if (board[index]) return
     // Change Board
     const newBoard = [...board]
     newBoard[index] = turn
