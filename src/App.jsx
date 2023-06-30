@@ -102,10 +102,10 @@ function App () {
         matchResult && (
           <section className='match-result'>
           {matchResult[0] == 'tie'
-            ? <h3>TIE</h3>
+            ? <h3 className='match-result__heading'>TIE</h3>
             : <>
-            <h3>WINNER</h3>
-            <p>{matchResult[1]}</p>
+            <h3 className='match-result__heading'>WINNER</h3>
+            <p className='match-result__winner'> {matchResult[1]}</p>
             </>
           }
           <button onClick={restartGame}>Restart game</button>

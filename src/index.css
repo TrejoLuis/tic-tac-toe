@@ -6,6 +6,8 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 :root{
   --clr-lt: #fbf0c3;
   --clr-dk: #24394c;
@@ -19,6 +21,7 @@ body{
   justify-content: center;
   background-color: var(--clr-dk);
   color: var(--clr-lt);
+  font-family: 'Lato', sans-serif;
 }
 
 #root {
@@ -61,4 +64,28 @@ body{
 .match-result{
   background-color: var(--clr-lt);
   color: var(--clr-dk);
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
+.match-result__heading,
+.match-result__winner{
+  font-size: 2em;
+  line-height: 100%;
+  font-weight: bold;
+}
+ button{
+   border: none;
+   border-radius: 0.5em;
+   background-color: var(--clr-main);
+   font-size: 1.3em;
+   cursor: pointer;
+ }
+ button:hover{
+   transform: scale(1.05);
+ }
+ button:active{
+   transform: none;
+ }
+
