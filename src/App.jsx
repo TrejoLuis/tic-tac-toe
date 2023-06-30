@@ -37,16 +37,23 @@ function App () {
     newBoard[index] = turn
     setBoard(newBoard)
 
-    // check for current result
-    const currentResult = checkForMatchResult(newBoard, turn)
-    if (currentResult) setMatchResult(currentResult)
-
     // Change turn
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
 
     // saveGame
     saveGame(newBoard, newTurn)
+
+    // check for current result
+    const currentResult = checkForMatchResult(newBoard, turn)
+    if (currentResult){
+    // Match Ended
+    setMatchResult(currentResult)
+    // delete localstorage data
+    localStorage.removeItem('board')
+    localStorage.removeItem('turn')
+    } 
+
   }
 
   function checkForMatchResult (board, turn) {
