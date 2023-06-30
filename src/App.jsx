@@ -22,16 +22,39 @@ function App () {
   function updateBoard (index) {
     // Ignore painted cell
     if (board[index]) return
+    // Ignore if there is a match result
+    if (matchResult) return
     // Change Board
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
+
+    // check for current result
+    const currentResult = checkForMatchResult(newBoard, turn)
+    if (currentResult) setMatchResult(currentResult)
 
     // Change turn
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
   }
 
+  function checkForMatchResult (board, turn) {
+    let result = null
+    // check a winner
+    WINNING_COMBINATIONS.forEach(comb => {
+      if (comb.every(index => board[index] === turn)) { result = ['win', turn] }
+    })
+    // check if tie
+    if (board.every(cell => cell != null) && !result) { result = ['tie'] }
+    // return null
+    return result
+  }
+
+  function restartGame () {
+    setBoard(Array(9).fill(null))
+    setTurn(TURNS.X)
+    setMatchResult(null)
+  }
 
   return (
     <>
@@ -51,6 +74,20 @@ function App () {
           {TURNS.O}
         </div>
       </section>
+      {
+        matchResult && (
+          <section className='match-result'>
+          {matchResult[0] == 'tie'
+            ? <h3>TIE</h3>
+            : <>
+            <h3>WINNER</h3>
+            <p>{matchResult[1]}</p>
+            </>
+          }
+          <button onClick={restartGame}>Restart game</button>
+          </section>
+        )
+      }
     </>
   )
 }
