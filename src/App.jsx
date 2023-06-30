@@ -15,8 +15,16 @@ function Cell ({ children, index, updateBoard }) {
 }
 
 function App () {
-  const [board, setBoard] = useState(Array(9).fill(null))
-  const [turn, setTurn] = useState(TURNS.X)
+  const [board, setBoard] = useState(() => {
+    let localBoard = localStorage.getItem('board')
+    if(localBoard) return JSON.parse(localBoard)
+    return Array(9).fill(null)
+  })
+  const [turn, setTurn] = useState(() => {
+    let localTurn = localStorage.getItem('turn')
+    if(localTurn) return JSON.parse(localTurn)
+    return TURNS.X
+  })
   const [matchResult, setMatchResult] = useState(null)
 
   function updateBoard (index) {
@@ -36,6 +44,9 @@ function App () {
     // Change turn
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
+
+    // saveGame
+    saveGame(newBoard, newTurn)
   }
 
   function checkForMatchResult (board, turn) {
@@ -54,6 +65,11 @@ function App () {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setMatchResult(null)
+  }
+
+  function saveGame(board, turn){
+    localStorage.setItem('board', JSON.stringify(board))
+    localStorage.setItem('turn', JSON.stringify(turn))
   }
 
   return (
